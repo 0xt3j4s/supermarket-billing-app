@@ -2,7 +2,6 @@ package main
 
 import (
 	"log"
-
 	"github.com/0xt3j4s/supermarket-billing-app/api"
 	"github.com/0xt3j4s/supermarket-billing-app/db"
 )
