@@ -15,6 +15,7 @@ This is a simple Supermarket Billing App implemented using Go (server-side) and 
     - [Update a specific bill by ID](#update-a-specific-bill-by-id)
     - [Delete a specific bill by ID](#delete-a-specific-bill-by-id)
 - [Contributing](#contributing)
+- [License](#license)
 
 
 
