@@ -70,7 +70,7 @@ Initial bill entries in the database:
 
 
 ### Create a new bill
-Send a POST request to /bills:
+Send a POST request to `/bills`:
 ```shell
 curl -X POST -H "Content-Type: application/json" -d '{
   "id": 3,
@@ -98,7 +98,7 @@ curl -X POST -H "Content-Type: application/json" -d '{
 ![New Bill Entry](/output/create_bill.png)
 
 ### Retrieve a specific bill by ID
-Send a GET request to /bills/:id :
+Send a GET request to `/bills/:id`:
 ```shell
 curl -X GET http://localhost:8080/bills/3
 ```
@@ -106,14 +106,14 @@ curl -X GET http://localhost:8080/bills/3
 
 
 ### Retrieve all bills
-Send a GET request to /bills:
+Send a GET request to `/bills`:
 ```shell
 curl -X GET http://localhost:8080/bills
 ```
 ![Retrieve All Bills](/output/get_all_bills.png)
 
 ### Update a specific bill by ID
-Send a PUT request to /bills/:id :
+Send a PUT request to `/bills/:id`:
 ```shell
 curl -X PUT -H "Content-Type: application/json" -d '{
   "id": 1,
@@ -140,7 +140,7 @@ curl -X PUT -H "Content-Type: application/json" -d '{
 ![Update Bill](/output/update_bill.png)
 
 ### Delete a specific bill by ID
-Send a DELETE request to /bills/:id :
+Send a DELETE request to `/bills/:id`:
 ```shell
 curl -X DELETE http://localhost:8080/bills/3
 ```
