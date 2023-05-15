@@ -2,22 +2,17 @@ package api
 
 import (
 	"context"
-	// "fmt"
 	"log"
 	"net/http"
 	"strconv"
 	"encoding/json"
-
 	"github.com/0xt3j4s/supermarket-billing-app/data"
 	"github.com/0xt3j4s/supermarket-billing-app/db"
 	"github.com/gin-gonic/gin"
 	"go.mongodb.org/mongo-driver/bson"
-	// "go.mongodb.org/mongo-driver/bson/primitive"
 )
 
 func getAllBills(c *gin.Context) {
-    // Implement logic to retrieve all bills from the database
-    // and return them as a response
 
 	// Define an empty slice to store the retrieved bills
 	var bills []data.Bill
@@ -54,8 +49,6 @@ func getAllBills(c *gin.Context) {
 }
 
 func createBill(c *gin.Context) {
-    // Implement logic to create a new bill based on the request payload
-    // and return the created bill as a response
 
     var newBill data.Bill
     if err := c.ShouldBindJSON(&newBill); err != nil {
@@ -127,4 +120,69 @@ func getBill(c *gin.Context) {
     c.Header("Content-Type", "application/json")
     c.Writer.WriteHeader(http.StatusOK)
     c.Writer.Write(jsonBytes)
+}
+
+
+func updateBill(c *gin.Context) {
+
+    billIDStr := c.Param("id")
+
+	// Convert the billID to an ObjectId
+    billID, err := strconv.Atoi(billIDStr)
+    if err != nil {
+		log.Println("Error converting bill ID to integer:", err)
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid bill ID"})
+		return
+	}
+
+
+	// Retrieve the existing bill from the database
+    billsCollection := db.GetBillsCollection()
+    filter := bson.M{"id": billID}
+    var existingBill data.Bill
+    err = billsCollection.FindOne(context.Background(), filter).Decode(&existingBill)
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    var updatedBill data.Bill
+    if err := c.ShouldBindJSON(&updatedBill); err != nil {
+        c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid request payload"})
+        return
+    }
+
+	// Exclude the ID field from the update
+    updatedBill.ID = existingBill.ID
+
+
+    update := bson.M{"$set": updatedBill}
+    _, err = billsCollection.UpdateOne(context.Background(), filter, update)
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    c.JSON(http.StatusOK, updatedBill)
+}
+
+func deleteBill(c *gin.Context) {
+
+	billIDStr := c.Param("id")
+
+	// Convert the billID to an ObjectId
+    billID, err := strconv.Atoi(billIDStr)
+    if err != nil {
+		log.Println("Error converting bill ID to integer:", err)
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid bill ID"})
+		return
+	}
+
+    // Delete the bill from the database
+    billsCollection := db.GetBillsCollection()
+    filter := bson.M{"id": billID}
+    _, err = billsCollection.DeleteOne(context.Background(), filter)
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    c.JSON(http.StatusOK, gin.H{"message": "Bill deleted"})
 }

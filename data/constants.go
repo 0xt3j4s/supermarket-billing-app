@@ -9,7 +9,7 @@ type Item struct {
 }
 
 type Bill struct {
-	ID        int64    `json:"id"`
+	ID        int    `json:"id"`
 	UserName      string `json:"user_name"`
 	Items     []Item `json:"items"`
 	CreatedAt string `json:"created_at"`

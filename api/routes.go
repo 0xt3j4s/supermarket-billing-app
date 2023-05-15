@@ -11,6 +11,8 @@ func SetupRouter() *gin.Engine {
     r.GET("/bills", getAllBills)
     r.POST("/bills", createBill)
     r.GET("/bills/:id", getBill)
+    r.PUT("/bills/:id", updateBill)
+    r.DELETE("/bills/:id", deleteBill)
 
     return r
 }

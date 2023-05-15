@@ -16,7 +16,6 @@ var (
     databaseURL = "mongodb://localhost:27017"
 )
 
-
 func ConnectMongoDB() error {
     // Create a MongoDB client
 	var err error
