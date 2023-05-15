@@ -1,6 +1,6 @@
 # Supermarket Billing App
 
-This is a simple Supermarket Billing App implemented using Go (Golang) and MongoDB. The application allows you to perform CRUD (Create, Read, Update, Delete) operations on bills, which represent customer purchases at a supermarket.
+This is a simple Supermarket Billing App implemented using Go (server-side) and MongoDB (database). The application allows you to perform CRUD (Create, Read, Update, Delete) operations on bills, which represent customer purchases at a supermarket.
 
 
 
