@@ -7,7 +7,7 @@ import (
 	"context"
 	"go.mongodb.org/mongo-driver/bson"
 	"github.com/0xt3j4s/supermarket-billing-app/db"
-	"github.com/0xt3j4s/supermarket-billing-app/constants"
+	"github.com/0xt3j4s/supermarket-billing-app/data"
 )
 
 func getAllBills(c *gin.Context) {
@@ -15,7 +15,7 @@ func getAllBills(c *gin.Context) {
     // and return them as a response
 
 	// Define an empty slice to store the retrieved bills
-	var bills []Bill
+	var bills []data.Bill
 
 	// Retrieve all bills from the database
 	billsCollection := db.GetBillsCollection()
@@ -27,7 +27,7 @@ func getAllBills(c *gin.Context) {
 
 	// Iterate over the retrieved bills and append them to the slice
 	for cursor.Next(context.Background()) {
-		var bill Bill
+		var bill data.Bill
 		err := cursor.Decode(&bill)
 		if err != nil {
 			log.Fatal(err)
@@ -46,7 +46,7 @@ func createBill(c *gin.Context) {
     // Implement logic to create a new bill based on the request payload
     // and return the created bill as a response
 
-	var newBill Bill
+	var newBill data.Bill
 	if err := c.ShouldBindJSON(&newBill); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid request payload"})
 		return
