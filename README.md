@@ -96,7 +96,8 @@ curl -X POST -H "Content-Type: application/json" -d '{
 }' http://localhost:8080/bills
 
 ```
-![New Bill Entry](/output/create_bill.png)
+<!-- ![New Bill Entry](/output/create_bill.png) -->
+<img src="/output/create_bill.png" />
 
 ### Retrieve a specific bill by ID
 Send a GET request to `/bills/:id`:
