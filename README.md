@@ -67,7 +67,7 @@ The following are the API endpoints are available:
 
 ## Usage
 Initial bill entries in the database:
-![Initial Bill Entries](./output/initial_bills.png)
+![Initial Bill Entries](/output/initial_bills.png)
 
 
 ### Create a new bill
@@ -96,14 +96,14 @@ curl -X POST -H "Content-Type: application/json" -d '{
 }' http://localhost:8080/bills
 
 ```
-![New Bill Entry](./output/create_bill.png)
+![New Bill Entry](/output/create_bill.png)
 
 ### Retrieve a specific bill by ID
 Send a GET request to `/bills/:id`:
 ```shell
 curl -X GET http://localhost:8080/bills/3
 ```
-![Retrieve Bill](./output/get_bill.png)
+![Retrieve Bill](/output/get_bill.png)
 
 
 ### Retrieve all bills
@@ -111,7 +111,7 @@ Send a GET request to `/bills`:
 ```shell
 curl -X GET http://localhost:8080/bills
 ```
-![Retrieve All Bills](./output/get_all_bills.png)
+![Retrieve All Bills](/output/get_all_bills.png)
 
 ### Update a specific bill by ID
 Send a PUT request to `/bills/:id`:
@@ -138,7 +138,7 @@ curl -X PUT -H "Content-Type: application/json" -d '{
   "created_at": "2023-05-16"
 }' http://localhost:8080/bills/3
 ```
-![Update Bill](./output/update_bill.png)
+![Update Bill](/output/update_bill.png)
 
 ### Delete a specific bill by ID
 Send a DELETE request to `/bills/:id`:
@@ -146,7 +146,7 @@ Send a DELETE request to `/bills/:id`:
 curl -X DELETE http://localhost:8080/bills/3
 ```
 
-![Delete Bill](./output/deleted_bill.png)
+![Delete Bill](/output/deleted_bill.png)
     
 
 ## Contributing
